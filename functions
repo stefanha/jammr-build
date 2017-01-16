@@ -1,0 +1,23 @@
+set -e
+
+download() {
+	url="$1"
+	cksum_expected="$2"
+	filename="download/$(basename "$url")"
+
+	if [ ! -f "$filename" ]; then
+		curl -L -o "$filename" "$url"
+	fi
+
+	if [ -f "$filename.cksum" ]; then
+		cksum_got="$(<$filename.cksum)"
+		[ "$cksum_got" = "$cksum_expected" ] && return
+	fi
+
+	cksum_got="$(shasum --binary "$filename" | awk '{ print $1 }')"
+	if [ "$cksum_got" != "$cksum_expected" ]; then
+		echo "checksum mismatch, expected $cksum_expected, got $cksum_got"
+		return 1
+	fi
+	echo "$cksum_got" >"$filename.cksum"
+}
