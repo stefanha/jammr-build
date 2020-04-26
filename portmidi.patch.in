@@ -5,8 +5,8 @@
  set(CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO "" CACHE INTERNAL "Unused")
  
 -set(CMAKE_OSX_ARCHITECTURES i386 ppc x86_64 CACHE STRING "change to needed architecture for a smaller library" FORCE)
-+set(CMAKE_OSX_ARCHITECTURES i386 x86_64 CACHE STRING "change to needed architecture for a smaller library" FORCE)
-+set(CMAKE_OSX_DEPLOYMENT_TARGET 10.8 CACHE STRING "" FORCE)
++set(CMAKE_OSX_ARCHITECTURES x86_64 CACHE STRING "change to needed architecture for a smaller library" FORCE)
++set(CMAKE_OSX_DEPLOYMENT_TARGET @@MACOSX_DEPLOYMENT_TARGET@@ CACHE STRING "" FORCE)
  
  PROJECT(portmidi)
  
@@ -17,19 +17,10 @@
  configuration=Release
  
 -PF=/usr/local
-+PF=/Users/test/jammr-build/root
++PF=@@PREFIX@@
  
  # For debugging, define PM_CHECK_ERRORS
  ifeq ($(configuration),Release)
-@@ -25,7 +25,7 @@
- $(CONFIG)/CMakeCache.txt:
- 	rm -f CMakeCache.txt
- 	mkdir -p $(CONFIG)
--	cd $(CONFIG); cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=$(CONFIG)
-+	cd $(CONFIG); cmake .. -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=$(CONFIG) # -DCMAKE_OSX_ARCHITECTURES=x86_64 -DCMAKE_OSX_DEPLOYMENT_TARGET=10.8
- 
- 
- **** For instructions: make -f pm_mac\Makefile.osx help ****\n'
 --- a/pm_common/CMakeLists.txt	2017-01-16 20:09:35.000000000 +0000
 +++ b/pm_common/CMakeLists.txt	2017-01-16 20:12:29.000000000 +0000
 @@ -22,9 +22,9 @@
@@ -37,10 +28,10 @@
  
  if(APPLE)
 -  set(CMAKE_OSX_SYSROOT /Developer/SDKs/MacOSX10.5.sdk CACHE 
-+  set(CMAKE_OSX_SYSROOT /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk CACHE 
++  set(CMAKE_OSX_SYSROOT @@SYSROOT@@ CACHE 
        PATH "-isysroot parameter for compiler" FORCE)
 -  set(CMAKE_C_FLAGS "-mmacosx-version-min=10.5" CACHE 
-+  set(CMAKE_C_FLAGS "-mmacosx-version-min=10.8" CACHE 
++  set(CMAKE_C_FLAGS "-mmacosx-version-min=@@MACOSX_DEPLOYMENT_TARGET@@" CACHE 
        STRING "needed in conjunction with CMAKE_OSX_SYSROOT" FORCE)
  endif(APPLE)
  

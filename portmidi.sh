@@ -7,6 +7,9 @@ cd build
 rm -rf portmidi
 unzip ../download/portmidi-src-*.zip
 cd portmidi
-patch -p1 <../../portmidi.patch
+sed -e "s%@@MACOSX_DEPLOYMENT_TARGET@@%$MACOSX_DEPLOYMENT_TARGET%" \
+    -e "s%@@PREFIX@@%$prefix%" \
+    -e "s%@@SYSROOT@@%$(xcrun --show-sdk-path)%" \
+    ../../portmidi.patch.in | patch -p1
 make -f pm_mac/Makefile.osx
 make -f pm_mac/Makefile.osx install
