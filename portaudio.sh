@@ -7,6 +7,6 @@ cd build
 rm -rf portaudio
 tar xf ../download/pa_stable_*.tgz
 cd portaudio
-./configure --prefix="$prefix"
+./configure --prefix="$prefix" --disable-mac-universal
 make -j4
 make install
