@@ -1,10 +1,10 @@
 #!/bin/bash
 . functions
 
-download "http://download.qt.io/official_releases/qt/5.7/5.7.1/single/qt-everywhere-opensource-src-5.7.1.tar.gz" "6cee9860f32e346ad355f1bb3436207dca8d4369"
+download "https://download.qt.io/official_releases/qt/5.14/5.14.2/single/qt-everywhere-src-5.14.2.tar.xz" "109dd41023c5df59b1aaf6d04211b473dea970ea"
 cd build
 rm -rf qt-everywhere-*
-tar xf ../download/qt-everywhere-*.tar.gz
+tar xf ../download/qt-everywhere-*.tar.xz
 cd qt-everywhere-*
 ./configure -verbose \
 	    -prefix "$prefix" \
