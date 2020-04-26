@@ -1,5 +1,9 @@
 set -e
 
+# The minimum macOS version that compiled code will run on.  See:
+# https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/cross_development/Configuring/configuring.html
+export MACOSX_DEPLOYMENT_TARGET=10.8
+
 download() {
 	url="$1"
 	cksum_expected="$2"
