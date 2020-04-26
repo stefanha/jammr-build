@@ -10,10 +10,19 @@ prefix="$base_dir/root"
 # https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/cross_development/Configuring/configuring.html
 export MACOSX_DEPLOYMENT_TARGET=10.8
 
+# download URL [FILENAME] SHA1SUM
 download() {
 	url="$1"
-	cksum_expected="$2"
-	filename="download/$(basename "$url")"
+	shift
+
+	if [ "$#" -eq 2 ]; then
+		filename="download/$1"
+		shift
+	else
+		filename="download/$(basename "$url")"
+	fi
+
+	cksum_expected="$1"
 
 	if [ ! -f "$filename" ]; then
 		curl -L -o "$filename" "$url"
