@@ -1,5 +1,11 @@
 set -e
 
+cd $(dirname $0)
+base_dir="$PWD"
+cd - >/dev/null
+
+prefix="$base_dir/root"
+
 # The minimum macOS version that compiled code will run on.  See:
 # https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/cross_development/Configuring/configuring.html
 export MACOSX_DEPLOYMENT_TARGET=10.8

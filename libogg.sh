@@ -1,9 +1,10 @@
 #!/bin/bash
-set -e
+. functions
+
 cd build
 rm -rf libogg-*
 tar xf ../download/libogg-*.tar.gz
 cd libogg-*
-./configure --prefix=/Users/test/jammr-build/root
+./configure --prefix="$prefix"
 make -j4
 make install

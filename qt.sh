@@ -7,7 +7,7 @@ rm -rf qt-everywhere-*
 tar xf ../download/qt-everywhere-*.tar.gz
 cd qt-everywhere-*
 ./configure -verbose \
-	    -prefix /Users/test/jammr-build/root \
+	    -prefix "$prefix" \
 	    -release \
 	    -opensource \
 	    -confirm-license \

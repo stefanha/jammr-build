@@ -1,5 +1,6 @@
 #!/bin/bash
-set -e
+. functions
+
 cd build
 rm -rf portmidi
 unzip ../download/portmidi-src-*.zip

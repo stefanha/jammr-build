@@ -1,9 +1,10 @@
 #!/bin/bash
-set -e
+. functions
+
 cd build
 rm -rf libvorbis-*
 tar xf ../download/libvorbis-*.tar.gz
 cd libvorbis-*
-./configure --prefix=/Users/test/jammr-build/root
+./configure --prefix="$prefix"
 make -j4
 make install
