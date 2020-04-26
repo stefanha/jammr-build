@@ -1,0 +1,13 @@
+These scripts create a build environment for compiling jammr macOS releases.
+
+1. Install the Xcode Command Line Tools:
+
+   $ xcode-select --install
+
+2. Build a package:
+
+   $ ./NAME.sh
+
+The build output is installed to the root/ directory.
+
+Compilation takes place in the build/ directory.
