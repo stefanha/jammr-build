@@ -22,4 +22,5 @@ cd qt-everywhere-*
 	    -pkg-config \
 	    -no-dbus \
 	    -no-glib
-make -j4
+patch -p1 <../../qt-chromium-find_sdk.patch
+make all install
