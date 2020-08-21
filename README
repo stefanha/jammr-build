@@ -1,13 +1,18 @@
 These scripts create a build environment for compiling jammr macOS releases.
 
-1. Install the Xcode Command Line Tools:
+1. Install the Xcode from the App Store.
 
-   $ xcode-select --install
+2. Build all dependencies:
 
-2. Build a package:
-
-   $ ./NAME.sh
+   $ ./pkg-config.sh && ./qt.sh && ./libogg.sh && ./libvorbis.sh && ./portaudio.sh && ./portmidi.sh && ./cmake.sh && ./qtkeychain.sh
 
 The build output is installed to the root/ directory.
 
-Compilation takes place in the build/ directory.
+Compilation takes place in the build/ directory. Build errors can be investigated in that directory.
+
+3. Build jammr:
+
+   $ export PATH=path/to/jammr-build/root/bin:$PATH
+   $ cd wahjam
+   $ qmake CONFIG=jammr CONFIG=qtclient
+   $ make
